@@ -1,0 +1,15 @@
+# データベースファイル
+*.db
+requests.db
+
+# キャッシュやPythonの自動生成ファイル
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Streamlitのシークレットファイル
+.streamlit/secrets.toml
+
+# OSの一時ファイル
+.DS_Store
+Thumbs.db
