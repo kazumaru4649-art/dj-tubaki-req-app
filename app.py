@@ -96,11 +96,13 @@ def generate_daily_password():
         if "email" in st.secrets:
             email_user = st.secrets["email"]["user"]
             email_pass = st.secrets["email"]["password"]
+            email_to = st.secrets["email"].get("to", email_user) # 宛先が指定されていればそれを使用、なければ送信元と同じ
+            
             if email_user and email_pass:
                 msg = MIMEText(f"本日のDJパネル用PINコードは {pin} です。\n(フルパスワード: {full_pass})")
                 msg['Subject'] = f"【DJ Request App】本日のPINコード ({today})"
                 msg['From'] = email_user
-                msg['To'] = email_user
+                msg['To'] = email_to
                 
                 server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
                 server.login(email_user, email_pass)
